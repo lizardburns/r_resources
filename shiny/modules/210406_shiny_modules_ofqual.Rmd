@@ -9,7 +9,6 @@ output:
     nature:
       highlightStyle: github
       countIncrementalSlides: false
-  keep_md: true
 ---
 
 ```{r echo=FALSE}
