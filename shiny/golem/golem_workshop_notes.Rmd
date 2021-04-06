@@ -1,0 +1,72 @@
+---
+title: "golem"
+author: "Stephen J. Price"
+date: "15/10/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Resources
+- [workshop flyer](https://f.hubspotusercontent00.net/hubfs/3463003/Good%20practices%20for%20%7Bshiny%7D%20development%20using%20%7Bgolem%7D%20-%20An%20Introduction.pdf)
+- [github repo](https://github.com/ColinFay/earlworkshop2020)
+- [slides](https://speakerdeck.com/colinfay/workshop-good-practices-for-shiny-development-with-golem)
+- [golem book](https://engineering-shiny.org/)
+- [basic exercises](https://connect.thinkr.fr/make-a-golem/) - copied below
+- [shiny developer series: golem](https://shinydevseries.com/post/episode-2-golem/)
+
+# Make a {golem}
+## Intro
+### Ex 1: Install the latest version
+```{r}
+remotes::install_github("Thinkr-open/golem")
+```
+
+### Ex 2: Create a new {golem} project
+File > New project > New directory > Package for shiny app using golem.  
+Note: it’s possible that you will need to restart RStudio after the installation.  
+
+## 01_start.R
+you need to set and run everything in this doc at the start of the project but never again `r emo::ji("smile")`. Modify it as needed and run.  
+
+### Ex 3: Fill the DESCRIPTION using fill_dec()
+
+### Ex 4.1: Add a README, the GPL3 licence, and a NEWS.md
+
+### Ex 4.2: Use the recommended tests, recommended deps, utils_ui and utils_server
+Try to launch your app with `golem::run_dev()`.  
+
+## 02_dev.R
+### Ex 5: Add a dataset
+Add a dataset, by running `usethis::use_data_raw( name = "my_dataset" )` from line 38 of 02_dev.R.  
+
+Inside the script that opens, write:
+```{r eval=FALSE}
+my_dataset <- readr::read_csv("https://raw.githubusercontent.com/ColinFay/earlworkshop2020/main/data/dataset.csv")
+usethis::use_data(my_dataset, overwrite = TRUE)
+
+```
+
+The dataset is now added to your app
+
+### Ex 6: Building your first module
+- Add two dependencies to your app, {dplyr} and {ggplot2}, by using the `usethis::use_package` function. These packages will be used inside our module.
+- Add the pipe to your app with `usethis::use_pipe()`
+- Create a module with `golem::add_module`
+  + the script that's created even contains the code (commented at the bottom) that you in your app_ui and app_server
+  + Just copy and paste these UI and Server functions to app_ui and app_server
+- Reproduce this UI/Server inside your module
+- Try to launch your app with `golem::run_dev()`
+
+### Ex 7 :CSS
+Create a new CSS file, and change the background of the app to LightGreen
+
+### Ex 8: Deploy
+Run one of:
+- `golem::add_rstudioconnect_file()`
+- `golem::add_shinyappsio_file()`
+- `golem::add_shinyserver_file()`
+
+Depending on where you want to deploy your app.

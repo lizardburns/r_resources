@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Shiny modules</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Stephen J. Price" />
+    <meta name="date" content="2021-06-04" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Shiny modules
+### Stephen J. Price
+### 06/04/2021
+
+---
+
+
+
+
+# Intro
+
+- What are shiny modules? Why are modules useful?
+- How do modules work?
+- How do you get modules to communicate?
+
+---
+
+# Revision: What is R shiny?
+
+![shiny](images/shiny.png)
+
+---
+
+# Revision: What is R shiny?
+
+- paired ui and server functions
+
+.pull-left[
+
+```r
+ui &lt;- shiny::fluidPage(
+  shiny::br(),
+  shiny::textInput("text", "What's your name?"),
+  shiny::verbatimTextOutput("out")
+)
+
+server &lt;- function(input, output, session){
+  output$out &lt;- shiny::renderText(
+    input$text
+  )
+}
+
+shiny::shinyApp(ui, server)
+```
+]
+
+.pull-right[
+![example app](images/eg_app.png)
+]
+
+---
+
+# Revision: What is R shiny?
+
+- paired ui and server functions
+
+  - our ui function prescribes how an app will look
+  - our server function makes provision for all the computations required to deliver the desired functionality
+  - paired in that you need to run them together to build an app. The UI looks to the server to populate its defined elements.
+  
+**Modules are sort of an app in miniature in that they are also paired ui and server functions which take care of namespaces**
+
+--
+
+## Tangent: functions
+
+- Thinking about the code you write, what are functions for you? why do you use them?
+
+---
+
+# Why function?
+
+--
+
+Functions:
+
+1. Limit duplication of code (fewer errors)
+2. Improve bug detection, code review and other aspects of production
+3. Make code more readable
+
+--
+
+**Of course, the same is true for using functions within your shiny app code**
+
+---
+
+# Functions with shiny
+
+Let's use a function to extend our basic app
+
+![example shiny fn](images/eg_fn.png)
+
+---
+
+# Functions with shiny
+
+
+```r
+ui &lt;- shiny::fluidPage(
+  shiny::br(),
+  shiny::textInput("first", "What's your first name?"),
+  shiny::verbatimTextOutput("pre"),
+  shiny::textInput("last", "What's your surname?"),
+  shiny::verbatimTextOutput("sur")
+)
+
+server &lt;- function(input, output, session){
+  output$pre &lt;- shiny::renderText( input$first )
+  output$sur &lt;- shiny::renderText( input$last )
+}
+
+shiny::shinyApp(ui, server)
+```
+
+---
+
+# Functions with shiny
+
+
+```r
+show_name &lt;- function(IDin, label, IDout) {
+  shiny::tagList(
+    shiny::textInput(IDin, paste0("What's your ", label, "?")),
+    shiny::verbatimTextOutput(IDout)
+  )
+}
+```
+
+---
+
+# Functions with shiny
+
+.pull-left[
+
+```r
+ui &lt;- shiny::fluidPage(
+  shiny::br(),
+  show_name("first", "first name", "pre"),
+  show_name("last", "surname", "sur")
+)
+
+server &lt;- function(input, output, session){
+  output$pre &lt;- shiny::renderText( input$first )
+  output$sur &lt;- shiny::renderText( input$last )
+}
+
+shiny::shinyApp(ui, server)
+```
+]
+
+.pull-right[
+![example shiny fn](images/eg_fn.png)
+]
+
+---
+
+# Using a module instead
+
+Now, I said that modules are paired ui and server functions that take care of namespacing and we've already written a function that's effectively a UI function so let's start with that.
+
+---
+
+# Module UI
+
+
+```r
+show_name &lt;- function(IDin, label, IDout) {
+  shiny::tagList(
+    shiny::textInput(IDin, paste0("What's your ", label, "?")),
+    shiny::verbatimTextOutput(IDout)
+  )
+}
+```
+
+--
+
+
+```r
+showNameUI &lt;- function(id, label) {
+  ns &lt;- shiny::NS(id)
+  shiny::tagList(
+    shiny::textInput(ns("input"), paste0("What's your ", label, "?")),
+    shiny::verbatimTextOutput(ns("out"))
+  )
+}
+```
+
+---
+
+# Module Server
+
+--
+
+
+```r
+server &lt;- function(input, output, session){
+  output$pre &lt;- shiny::renderText( input$first )
+  output$sur &lt;- shiny::renderText( input$last )
+}
+```
+
+--
+
+
+```r
+showNameServer &lt;- function(id) {
+  moduleServer(id, function(input, output, session) {
+    
+    output$out &lt;- shiny::renderText( input$input )
+  
+  })
+}
+```
+
+---
+
+# App with module
+
+.pull-left[
+
+```r
+ui &lt;- shiny::fluidPage(
+  shiny::br(),
+  showNameUI("first", "first name"),
+  showNameUI("last", "surname")
+)
+
+server &lt;- function(input, output, session){
+  showNameServer("first")
+  showNameServer("last")
+}
+
+shiny::shinyApp(ui, server)
+```
+]
+
+--
+
+.pull-right[
+
+```r
+ui &lt;- shiny::fluidPage(
+  shiny::br(),
+  shiny::textInput("first", "What's your first name?"),
+  shiny::verbatimTextOutput("pre"),
+  shiny::textInput("last", "What's your surname?"),
+  shiny::verbatimTextOutput("sur")
+)
+
+server &lt;- function(input, output, session){
+  output$pre &lt;- shiny::renderText( input$first )
+  output$sur &lt;- shiny::renderText( input$last )
+}
+
+shiny::shinyApp(ui, server)
+```
+]
+
+---
+
+# Namespace
+
+A namespace is a space for names - an environment to go and look in for a name.
+
+
+```r
+shiny::br()
+htmltools::br()
+shiny::renderText( input$first )
+```
+
+--
+
+In terms of another structure that you might be more familiar with, it doesn't hurt to think of a namespace as being like a list.
+
+
+```r
+a &lt;- list()
+a$a &lt;- 1:5
+a[["b"]] &lt;- 6:10
+
+a[["a"]]
+```
+
+```
+## [1] 1 2 3 4 5
+```
+
+```r
+a$b
+```
+
+```
+## [1]  6  7  8  9 10
+```
+
+---
+
+# Namespace 2
+
+```r
+a &lt;- list()
+a$a &lt;- 1:5
+a[["b"]] &lt;- 6:10
+
+x &lt;- list()
+x$a &lt;- c("a", "b", "c")
+x[["b"]] &lt;- c("d", "e", "f")
+```
+---
+
+# Why are modules useful?
+
+--
+
+1. Limit duplication of code (fewer errors)
+2. Improve bug detection, code review and other aspects of production
+3. Make code more readable
+
+---
+
+# How do modules work?
+
+By using a shared and dedicated namespace to allow paired UI and server functions to work with a set of names meaning that we avoid collisions.
+
+---
+
+# Module communication
+
+
+```r
+goButton &lt;- function(id) {
+  ns &lt;- NS(id)
+  
+  column(width = 12,
+         actionButton(
+           ns("draw"), 
+           "Apply selections", 
+           style = "color: #fff; background-color: #337ab7; border-color: #2e6da4",
+           width = "100%"
+           )
+         )
+}
+
+goServer &lt;- function(id) {
+  moduleServer(id, function(input, output, session) {
+    reactive(input$draw)
+  })
+}
+```
+
+
+```r
+# collects info about user clicks on draw ("Apply selections") button
+left_go &lt;- goServer("left_draw")
+
+# filters data based on user inputs on click
+data &lt;- filterServer("left_menu", dq, left_go)
+```
+
+
+---
+
+# Thanks
+
+Some useful resources:
+
+- [Chapter 19 of Mastering Shiny](https://mastering-shiny.org/scaling-modules.html)
+- [Fantastic blog/demo](https://thatdatatho.com/communicating-shiny-modules-simple-example/)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

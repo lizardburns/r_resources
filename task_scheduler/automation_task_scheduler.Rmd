@@ -1,0 +1,50 @@
+---
+title: "Setting up windows task scheduler to run R scripts"
+author: "Stephen J. Price"
+date: "`r lubridate::today()`"
+output: 
+  bookdown::html_document2:
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r}
+library(knitr)
+path <- "C:/Users/stephen.price/OneDrive - Ofqual/my_home/tools/task_scheduler/"
+```
+
+# Create a project directory for scripts
+1. Right click on the "Task scheduler library" in the left-hand panel
+2. Select "New folder..." and create a directory
+
+```{r}
+include_graphics(file.path(path, "create_dir.PNG"))
+```
+
+# Click Create task...
+1. **General** tab: enter a name and description for task
+2. **Triggers** tab: Click "New...", select "Daily" and then enter a date and time, then set an "Expire" date (usually two weeks for consultations)
+3. **Actions** tab: 
+  - click "New...",
+  - You want the default action, "Start a program", which will invoke R from the command prompt
+  - paste the path to your Rscript.exe into the Program/script box. This will be something like:
+    + `"C:\Program Files\R\R-4.0.2\bin\Rscript.exe"` - **you need the inverted commas if there are spaces in your path!!**
+  - paste the command you need R to run into the "Add arguments" box:
+    + `-e "source('O:/DIVISIONAL DRIVES/Standards and Research/Data analytics/Data innovations/Visualisations/Interactive/Consultations/vtq_2021_part2/vtq2021_part2_taskmaster.R')"`
+    + again, the inverted commas are needed
+
+```{r}
+include_graphics(file.path(path, "create_action.PNG"))
+```
+
+4. **Conditions** tab: uncheck "Start the task only if the computer is on AC power"
+5. **Settings** tab: set up as in screenshot (that's **5** minutes!)
+
+```{r}
+include_graphics(file.path(path, "settings.PNG"))
+```
+
+You should be good to go!
