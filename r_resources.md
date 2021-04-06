@@ -33,7 +33,7 @@ output:
 - [A useful range of charts](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html)
 - [ggplot2 extensions](https://exts.ggplot2.tidyverse.org/gallery/)
 - [BBC cookbook](https://bbc.github.io/rcookbook/) (also see [repo](https://github.com/bbc/bbplot/tree/master/R))
-- [aesthetics specifications](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html) `r vignette("ggplot2-specs")`
+- [aesthetics specifications](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html) ggplot2, C:/Users/stephen.price/Documents/R/R-4.0.4/library/ggplot2, ggplot2-specs, ggplot2-specs.Rmd, Aesthetic specifications, ggplot2-specs.R, ggplot2-specs.html
 - [theme components](https://ggplot2.tidyverse.org/reference/theme.html)
 - [Extending ggplot2](https://ggplot2.tidyverse.org/articles/extending-ggplot2.html)
 - [colour schemes](https://data-se.netlify.app/2018/12/12/changing-the-default-color-scheme-in-ggplot2/)
@@ -64,7 +64,7 @@ output:
 
 ## other
 - [Quiz formats](https://digitalblog.ons.gov.uk/2018/11/20/who-wants-to-be-a-millionaire/)
-- [Part-to-whole viz](https://digitalblog.ons.gov.uk/2017/08/17/stacking-the-bars-in-your-favour/) post-pie `r emo::ji("cry")`
+- [Part-to-whole viz](https://digitalblog.ons.gov.uk/2017/08/17/stacking-the-bars-in-your-favour/) post-pie 😢
 
 # Pipelines
 - [targets](https://books.ropensci.org/targets/walkthrough.html)

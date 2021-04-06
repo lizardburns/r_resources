@@ -1,7 +1,7 @@
 ---
 title: "Learning Shiny"
 author: "Stephen J. Price"
-date: "`r lubridate::today()`"
+date: "2021-04-06"
 output:
   html_document:
     theme: flatly
@@ -15,14 +15,7 @@ output:
 Data camp course: Building web applications with R Shiny - case studies
 
 
-```{r echo=FALSE, message=FALSE}
-knitr::opts_chunk$set(eval = FALSE)
 
-# install.packages("shiny")
-library(shiny)
-library(colourpicker)
-library(plotly)
-```
 
 # Resources:
 [Mastering Shiny](https://mastering-shiny.org/)  
@@ -62,7 +55,8 @@ library(plotly)
   - these reactive variables must share some structural features with functions since you follow them with parentheses when you want to refer to them, i.e. x()
 - [dealing with double refresh in nearPoints](https://code-examples.net/en/q/1d8e61c)
   
-```{r eval=FALSE}
+
+```r
 ui <- fluidPage(
   sidebarPanel(
     h1("Options:")
@@ -80,7 +74,8 @@ shinyApp(ui = ui, server = server)
 ## [Input types](https://shiny.rstudio.com/tutorial/written-tutorial/lesson3/)
 - [action buttons](https://shiny.rstudio.com/articles/action-buttons.html)
 
-```{r eval=FALSE}
+
+```r
 # Define UI for the application
 ui <- fluidPage(
   sidebarLayout(
@@ -121,14 +116,16 @@ shinyApp(ui = ui, server = server)
 
 - eg, width and height
 
-```{r}
+
+```r
 plotOutput("plot", width=600, height=600)
 ```
 
 ## interactive plots
 [plotly book](https://plotly-r.com/linking-views-with-shiny.html)
 
-```{r}
+
+```r
 # ui main panel:
 plotlyOutput("plot")
 # server:
@@ -149,11 +146,11 @@ output$plot <- renderPlotly({
     p
   })
 })
-
 ```
 
 ## download data
-```{r}
+
+```r
 # ui
 downloadButton(outputId = "download_data", label = "Download")
 # server
@@ -184,7 +181,8 @@ output$download_data <- downloadHandler(
 ## Conditional panels
 Be careful to use the correct syntax, especially in the condition statement where you need to use . not $!  
 
-```{r}
+
+```r
 ui <- fluidPage(
   h1("Word Cloud"),
   sidebarLayout(
@@ -253,12 +251,12 @@ It's important to [isolate each input in it's own reactive](https://shiny.rstudi
 # Functionality and appearance
 ## Date range input
 eg. [here](http://shiny.rstudio-staging.com/gallery/date-and-date-range.html)
-```{r}
+
+```r
 dateRangeInput('dateRange',
       label = 'Date range input: yyyy-mm-dd',
       start = lubridate::today() - lubridate::days(2), end = lubridate::today()
     )
-
 ```
 
 ## Tables
@@ -271,7 +269,8 @@ https://appsilon.com/forget-about-excel-use-r-shiny-packages-instead/
 [datatable options](https://datatables.net/reference/api/buttons.exportInfo)
 [datatable buttons](https://rstudio.github.io/DT/003-tabletools-buttons.html)
 
-```{r}
+
+```r
 DT::dataTableOutput("table")
 DT::renderDataTable() # gives search bar, control over how many rows are displayed, rnotebook style scrolling
 ```
@@ -307,7 +306,8 @@ https://github.com/rstudio/DT/issues/267
 [Zooming in on standard ggplot](https://shiny.rstudio.com/gallery/plot-interaction-zoom.html)  
 
 
-```{r}
+
+```r
 mtcars2 <- mtcars[, c("mpg", "cyl", "disp", "hp", "wt", "am", "gear")]
 
 ui <- fluidPage(
@@ -361,7 +361,8 @@ Good for help pages, etc.
 https://ijlyttle.github.io/bsplus/articles/modal.html
 https://ijlyttle.shinyapps.io/tooltip_popover_modal/
 
-```{r}
+
+```r
 tags$div(title="Click here to slide through years",
     sliderInput("slider_year", "YEAR:", 
                 min = 2001, max = 2011, value = 2009, 
@@ -373,7 +374,8 @@ tags$div(title="Click here to slide through years",
 ## tabs
 [navBar](https://shiny.rstudio.com/gallery/navbar-example.html)
 
-```{r tabs}
+
+```r
 tabsetPanel(
     # Create an "Inputs" tab
     tabPanel(
@@ -400,7 +402,8 @@ tabsetPanel(
 
 #### link to other tabs
 - expand explainer at top (except help) by including link to help tab in each? - [updateTabsetPanel](https://stackoverflow.com/questions/34315485/linking-to-a-tab-or-panel-of-a-shiny-app)
-```{r}
+
+```r
 ui <- fluidPage(
 
    titlePanel("Old Faithful Geyser Data"),
@@ -442,7 +445,8 @@ shinyApp(ui = ui, server = server)
 ```
 
 ## Toggle sidebar
-```{r}
+
+```r
 library(shiny)
 library(shinyjs)
 
@@ -474,7 +478,8 @@ server <-function(input, output, session) {
 shinyApp(ui, server)
 ```
 
-```{r CSS}
+
+```r
 includeCSS() # imports a css file where css is stored separately
 
 # otherwise make a variable in shiny app script
