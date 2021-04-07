@@ -1,28 +1,22 @@
 ---
 title: "Setting up windows task scheduler to run R scripts"
 author: "Stephen J. Price"
-date: "`r lubridate::today()`"
+date: "2021-04-07"
 output: 
   html_document:
     toc: yes
     keep_md: true
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```
 
-```{r}
-library(knitr)
-```
+
+
 
 # Create a project directory for scripts
 1. Right click on the "Task scheduler library" in the left-hand panel
 2. Select "New folder..." and create a directory
 
-```{r}
-include_graphics(file.path(here::here(), "task_scheduler/create_dir.PNG"))
-```
+<img src="C:/Users/stephen.price/my_home/resources/r_resources/task_scheduler/create_dir.PNG" width="1318" />
 
 # Click Create task...
 1. **General** tab: enter a name and description for task
@@ -36,15 +30,11 @@ include_graphics(file.path(here::here(), "task_scheduler/create_dir.PNG"))
     + `-e "source('your_path/taskmaster.R')"`
     + again, the inverted commas are needed
 
-```{r}
-include_graphics(file.path(here::here(), "task_scheduler/create_action.PNG"))
-```
+<img src="C:/Users/stephen.price/my_home/resources/r_resources/task_scheduler/create_action.PNG" width="454" />
 
 4. **Conditions** tab: uncheck "Start the task only if the computer is on AC power"
 5. **Settings** tab: set up as in screenshot (that's **5** minutes!)
 
-```{r}
-include_graphics(file.path(here::here(), "task_scheduler/settings.PNG"))
-```
+<img src="C:/Users/stephen.price/my_home/resources/r_resources/task_scheduler/settings.PNG" width="631" />
 
 You should be good to go!
