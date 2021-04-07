@@ -1,7 +1,7 @@
 ---
 title: "Git and GitHub: version control and collaboration"
 author: "Stephen J. Price"
-date: "`r lubridate::today()`"
+date: "2021-04-07"
 output:
   html_document:
     theme: flatly
@@ -52,7 +52,8 @@ It's good to link commits to issues since this automatically gives the "why?" an
 
 - [see here](http://r-pkgs.had.co.nz/git.html#commit-best-practices)
 
-```{r}
+
+```r
 # install.packages("usethis")
 ```
 
