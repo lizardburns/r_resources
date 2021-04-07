@@ -1,0 +1,155 @@
+---
+title: "Xaringan basics/template"
+author: "Stephen J. Price"
+date: "07/04/2021"
+output:
+  xaringan::moon_reader:
+    css: [default, metropolis, metropolis-fonts, extra.css]
+    includes:
+      after_body: insert-logo.html
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+```{r echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+
+library(knitr)
+```
+
+# Intro
+
+- `{xaringan}` uses [remark.js](https://remarkjs.com/) to create nice html presentations
+- Write presentations in R markdown and quickly turn your doc into a slick slide-deck
+
+---
+
+# Slides
+
+- break up your markdown into slides with **3** dashes (hyphens) `---` on their own line
+
+--
+
+- incrementally display slide content with two dashes `--` on their own line
+
+---
+
+# Images
+
+Insert images using the usual markdown syntax:
+
+`![some text](path_to_file.png)`
+
+![logo](logo.png)
+
+---
+
+# Sidebars
+
+- use `.left-column[blah blah]` & `.right-column[blah blah]` to create a sidebar layout
+
+---
+
+# Sidebars
+
+.left-column[
+  ## What is it?
+]
+.right-column[
+  .red[*]A simple, in-browser, Markdown-driven slideshow tool targeted at people who know their way around HTML and CSS, featuring:
+
+- .red[Markdown formatting], with smart extensions
+
+- .red[Presenter mode], with cloned slideshow view
+
+- .red[Syntax highlighting], supporting a range of languages
+
+- .red[Slide scaling], thus similar appearance on all devices / resolutions 
+
+- .red[Touch support for smart phones and pads], i.e. swipe to navigate slides
+
+.footnote[.red[*] Copy-pasted from the [remark.js project](https://remarkjs.com/)]
+]
+
+---
+
+# Sidebars
+
+.left-column[
+  ## What is it?
+  ## Why use it?
+]
+.right-column[
+.red[*]If your ideal slideshow creation workflow contains any of the following steps:
+
+- Just write what's on your mind
+
+- Do some basic styling
+
+- Easily collaborate with others
+
+- Share with and show to everyone
+
+Then remark might be perfect for your next slideshow!
+
+.footnote[.red[*] Copy-pasted from the [remark.js project](https://remarkjs.com/)]
+]
+
+---
+
+# Columns
+
+- wrap content in `.pull-left[blah blah]` and `.pull-right[blah blah]` to create equal columns
+
+.pull-left[
+```{r echo=TRUE, eval=FALSE}
+library(dplyr)
+mtcars %>% 
+  head()
+```
+]
+
+.pull-right[
+```{r echo=TRUE, eval=FALSE}
+library(dplyr)
+iris %>% 
+  head()
+```
+]
+
+---
+
+# Extra CSS
+
+- you can add any additional styling you want
+- write your own CSS to define classes
+
+--
+
+For example:
+- Add red text by defining it in extra.css: `.red { color: red; }`
+- then wrap .red[any text you want to be red] in `.red[]`
+
+---
+
+# Presenter notes
+
+- just use 3 question marks `???` on their own line and then add whatever you need below
+- then use the keyboard shortcut `p` to view slides in presenter mode
+- see more in [R markdown: The definitive guide](https://bookdown.org/yihui/rmarkdown/xaringan-format.html#xaringan-notes)
+
+???
+
+Simple as! Include images if you like and use *any* other standard markdown features
+
+---
+
+# Thanks
+
+Some useful resources:
+
+- [xaringan presentations](https://bookdown.org/yihui/rmarkdown/xaringan.html)
+- [Inserting a logo](https://github.com/gadenbuie/xaringan-logo)
+- [xaringanthemer](https://pkg.garrickadenbuie.com/xaringanthemer/articles/xaringanthemer.html)
