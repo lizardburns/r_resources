@@ -39,9 +39,12 @@ output:
 - [colour schemes](https://data-se.netlify.app/2018/12/12/changing-the-default-color-scheme-in-ggplot2/)
 
 ### styling labs
-  + https://www.ericekholm.com/posts/2021-03-24-improving-ggplots-with-text-color/
-  + e.g. subtitle = "Test results from a single year summarised as either a pass or <span style = 'color:#7C272E;'>fail</span><br>"
-
+  + install `ggtext`
+  + append `theme(plot.title = ggtext::element_markdown())` to plot code
+  + wrap the text you want to colour or otherwise style in html using `span`
+  + e.g. title = "<span style = 'color:#d4681d;'>The coloured bit of your title</span> will then be highlighted"
+  + [check out this blog post](https://www.ericekholm.com/posts/2021-03-24-improving-ggplots-with-text-color/)
+  
 ## other packages
 - [cowplot](https://wilkelab.org/cowplot/index.html)
 - [ggforce](https://rviews.rstudio.com/2019/09/19/intro-to-ggforce/) also looks useful (but not perfect!) for zooming in on areas of a plot in a second panel.
