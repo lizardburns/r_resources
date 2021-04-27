@@ -165,7 +165,7 @@ check()
   - [guidance for users](https://nationalarchives.gov.uk/documents/information-management/ogl-user-guidance.pdf)
 
 ```{r}
-use_gpl3_license(name = "Stephen J. Price")
+use_gpl3_license()
 ```
 
 ## Add documentation
@@ -241,7 +241,7 @@ package_coverage()
 - [lifecycle](https://lifecycle.r-lib.org/articles/lifecycle.html) badges
 
 ```{r}
-use_lifecycle_badge("Maturing")
+use_lifecycle_badge("experimental")
 ```
 
 ### Code coverage badge
