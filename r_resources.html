@@ -2870,6 +2870,26 @@ div.tocify {
 <li><a href="https://adv-r.hadley.nz/">Advanced R</a></li>
 <li><a href="https://b-rodrigues.github.io/modern_R/">Modern R with the tidyverse</a></li>
 <li><a href="https://datascienceineducation.com/">Data science in Education</a></li>
+<li><a href="https://rstats.wtf/index.html">What they forgot to teach you about R book</a></li>
+</ul>
+<div id="statistical-modelling" class="section level2">
+<h2>Statistical modelling</h2>
+<ul>
+<li><a href="https://jmsallan.netlify.app/blog/influential-observations-in-linear-regression/">Influential observations in linear regression</a></li>
+<li><a href="https://github.com/AlbertoAlmuinha/bayesmodels">Bayesmodels</a> - unlock multiple bayesian models in one framework.In addition, it allows you to integrate these models with the Modeltime and the Tidymodels ecosystems.</li>
+<li><a href="https://github.com/IndrajeetPatil/broomExtra">broomExtra</a> - provides helper functions that assist in data analysis workflows involving regression analyses.</li>
+<li><a href="https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/statististical-learning.html">statistical learning with tidymodels</a></li>
+<li><a href="https://shirinsplayground.netlify.app/2021/04/goodbadugly_ml/">visualising machine learning data</a></li>
+<li><a href="https://github.com/RoseannaGG/LinearMixedEffectsModels/blob/main/Linear%20Mixed%20Effects%20Models%20-%20R%20Gamlen-Greene.pdf">mixed effect models with lmer</a></li>
+</ul>
+</div>
+</div>
+<div id="packages" class="section level1">
+<h1>Packages</h1>
+<ul>
+<li><a href="https://grasshoppermouse.github.io/posts/2017-10-18-put-your-data-in-an-r-package/">creating data packages</a></li>
+<li><a href="https://thisisnic.github.io/2021/05/18/r-package-documentation-what-makes-a-good-example/">package documentation</a></li>
+<li><a href="https://www.rstudio.com/resources/rstudioglobal-2021/organization-how-to-make-internal-r-packages-part-of-your-team/">how teams can use internal packages</a></li>
 </ul>
 </div>
 <div id="rmarkdown" class="section level1">
@@ -2880,38 +2900,55 @@ div.tocify {
 <li><a href="https://rmd4sci.njtierney.com/">RMarkdown for Scientists</a></li>
 <li><a href="https://bookdown.org/yihui/bookdown/a-single-document.html">Using bookdown features</a></li>
 <li><a href="https://github.com/rstudio/fontawesome">font awesome</a></li>
+<li><a href="https://thinkr-open.github.io/remedy/">remedy plugin</a> - dropdown options to do markdown formatting</li>
+</ul>
+</div>
+<div id="shiny" class="section level1">
+<h1>Shiny</h1>
+<ul>
+<li><a href="https://www.r-bloggers.com/2021/05/host-shiny-apps-with-docker/">deploy with docker</a></li>
+<li><a href="https://hosting.analythium.io/dockerized-shiny-apps-with-dependencies/">Dockerized Shiny Apps with Dependencies</a></li>
+<li><a href="https://shiny.rstudio.com/app-stories/weather-lookup-bslib.html">app themes</a></li>
+<li><a href="https://book.javascript-for-r.com/">javascript</a></li>
 </ul>
 </div>
 <div id="dataviz" class="section level1">
 <h1>Dataviz</h1>
 <ul>
 <li><a href="https://ragg.r-lib.org/">ragg graphics device</a></li>
+<li><a href="https://github.com/krzjoa/awesome-r-dataviz">dataviz package list</a></li>
 </ul>
 <div id="ggplot2" class="section level2">
 <h2>ggplot2</h2>
 <ul>
-<li><a href="https://ggplot2-book.org/index.html">ggplot2 book</a></li>
+<li><a href="https://ggplot2-book.org/index.html">ggplot2 book</a> and <a href="https://datavizs21.classes.andrewheiss.com/">course</a></li>
 <li><a href="http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html">A useful range of charts</a></li>
 <li><a href="https://exts.ggplot2.tidyverse.org/gallery/">ggplot2 extensions</a></li>
 <li><a href="https://bbc.github.io/rcookbook/">BBC cookbook</a> (also see <a href="https://github.com/bbc/bbplot/tree/master/R">repo</a>)</li>
 <li><a href="https://ggplot2.tidyverse.org/articles/ggplot2-specs.html">aesthetics specifications</a> ggplot2, C:/Users/stephen.price/Documents/R/R-4.0.4/library/ggplot2, ggplot2-specs, ggplot2-specs.Rmd, Aesthetic specifications, ggplot2-specs.R, ggplot2-specs.html</li>
 <li><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme components</a></li>
-<li><a href="https://ggplot2.tidyverse.org/articles/extending-ggplot2.html">Extending ggplot2</a></li>
 <li><a href="https://data-se.netlify.app/2018/12/12/changing-the-default-color-scheme-in-ggplot2/">colour schemes</a></li>
 </ul>
 <div id="styling-labs" class="section level3">
 <h3>styling labs</h3>
 <ul>
-<li><a href="https://www.ericekholm.com/posts/2021-03-24-improving-ggplots-with-text-color/" class="uri">https://www.ericekholm.com/posts/2021-03-24-improving-ggplots-with-text-color/</a></li>
-<li>e.g. subtitle = “Test results from a single year summarised as either a pass or <span style="color:#7C272E;">fail</span><br>”</li>
+<li>install <code>ggtext</code></li>
+<li>append <code>theme(plot.title = ggtext::element_markdown())</code> to plot code</li>
+<li>wrap the text you want to colour or otherwise style in html using <code>span</code></li>
+<li>e.g. title = “<span style="color:#d4681d;">The coloured bit of your title</span> will then be highlighted”</li>
+<li><a href="https://www.ericekholm.com/posts/2021-03-24-improving-ggplots-with-text-color/">check out this blog post</a></li>
 </ul>
 </div>
 </div>
-<div id="other-packages" class="section level2">
-<h2>other packages</h2>
+<div id="other-packagesextensions" class="section level2">
+<h2>other packages/extensions</h2>
 <ul>
+<li><a href="https://ggplot2.tidyverse.org/articles/extending-ggplot2.html">Extending ggplot2</a></li>
+<li><a href="https://mode.com/blog/r-ggplot-extension-packages/">12 ggplot extensions</a></li>
 <li><a href="https://wilkelab.org/cowplot/index.html">cowplot</a></li>
 <li><a href="https://rviews.rstudio.com/2019/09/19/intro-to-ggforce/">ggforce</a> also looks useful (but not perfect!) for zooming in on areas of a plot in a second panel.</li>
+<li><a href="https://www.r-graph-gallery.com/upset-plot.html">upset plots</a></li>
+<li><a href="https://github.com/hafen/geofacet">geofaceting</a> - geofaceting functionality for ggplot2</li>
 </ul>
 </div>
 <div id="general-dataviz" class="section level2">
@@ -2950,16 +2987,54 @@ div.tocify {
 </ul>
 </div>
 </div>
+<div id="tables" class="section level1">
+<h1>Tables</h1>
+<ul>
+<li><a href="https://themockup.blog/posts/2020-09-04-10-table-rules-in-r/">Table best practise and a grammar of tables {gt}</a></li>
+</ul>
+</div>
 <div id="pipelines" class="section level1">
 <h1>Pipelines</h1>
 <ul>
 <li><a href="https://books.ropensci.org/targets/walkthrough.html">targets</a></li>
 </ul>
 </div>
+<div id="testing" class="section level1">
+<h1>Testing</h1>
+<ul>
+<li><a href="https://www.freecodecamp.org/news/types-of-software-testing/">types of testing</a></li>
+</ul>
+</div>
+<div id="git" class="section level1">
+<h1>Git</h1>
+<ul>
+<li><a href="https://github.com/Thinkr-open/gitdown">gitdown</a> - build a bookdown report of commit messages arranged according to a pattern</li>
+</ul>
+</div>
+<div id="productivity" class="section level1">
+<h1>Productivity</h1>
+<ul>
+<li><a href="https://github.com/lindeloev/job">job package</a> - free your RStudio console by running jobs in the background</li>
+</ul>
+</div>
 <div id="google-sheets" class="section level1">
 <h1>Google sheets</h1>
 <ul>
 <li><a href="https://datascienceplus.com/how-to-use-googlesheets-to-connect-r-to-google-sheets/" class="uri">https://datascienceplus.com/how-to-use-googlesheets-to-connect-r-to-google-sheets/</a></li>
+</ul>
+</div>
+<div id="time-series" class="section level1">
+<h1>Time series</h1>
+<ul>
+<li><a href="https://github.com/business-science/timetk">timetk</a></li>
+</ul>
+</div>
+<div id="other-fun-stuff" class="section level1">
+<h1>Other fun stuff</h1>
+<ul>
+<li><a href="https://github.com/elliottmorris/politicaldata">politicaldata: a package for acquiring and analyzing political data</a></li>
+<li><a href="https://github.com/h-a-graham/rayvista">rayvista</a> - plugin for the fabulous {rayshader} package. It provides a single main function plot_3d_vista which allows the user to create a 3D visualisation of any location on earth.</li>
+<li><a href="https://github.com/mikejohnson51/climateR">climateR</a></li>
 </ul>
 </div>
 

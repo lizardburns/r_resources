@@ -1,7 +1,7 @@
 ---
 title: "Learning Shiny"
 author: "Stephen J. Price"
-date: "2021-04-06"
+date: "2021-06-03"
 output:
   html_document:
     theme: flatly
@@ -35,6 +35,8 @@ Data camp course: Building web applications with R Shiny - case studies
     + with [groupings](https://github.com/daattali/advanced-shiny/tree/master/dropdown-groups)
 4. Bespoke error messages with [validate](https://shiny.rstudio.com/articles/validation.html)
 5. [Shiny options](https://shiny.rstudio.com/reference/shiny/1.0.3/shiny-options.html)
+
+[javascript](https://book.javascript-for-r.com/)
 
 # Tips
 [Extensive list of tips and tricks](https://github.com/daattali/advanced-shiny)
@@ -516,6 +518,10 @@ https://docs.rstudio.com/connect/user/shiny.html
 [Intro](https://shiny.rstudio.com/articles/modules.html)
 Conference - [talk](https://rstudio.com/resources/shiny-dev-con/shiny-modules/) and [materials](https://github.com/rstudio/ShinyDeveloperConference/tree/master/Modules).
 [With the R6 class](http://www.chenghaozhu.net/posts/en/2019-03-25/)
+
+# Docker
+- [deploy with docker](https://www.r-bloggers.com/2021/05/host-shiny-apps-with-docker/)
+- [Dockerized Shiny Apps with Dependencies](https://hosting.analythium.io/dockerized-shiny-apps-with-dependencies/)
 
 # Multi-page shiny apps
 https://colinfay.me/brochure-r-package/

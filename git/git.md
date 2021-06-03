@@ -1,7 +1,7 @@
 ---
 title: "Git and GitHub: version control and collaboration"
 author: "Stephen J. Price"
-date: "2021-04-07"
+date: "2021-06-03"
 output:
   html_document:
     theme: flatly
@@ -70,4 +70,4 @@ It's good to link commits to issues since this automatically gives the "why?" an
 - [chapter from R packages book](https://r-pkgs.org/git.html)
 - [happy git book](https://happygitwithr.com/)
 - https://rfortherestofus.com/2021/02/how-to-use-git-github-with-r/
-
+- [gitdown](https://github.com/Thinkr-open/gitdown) - build a bookdown report of commit messages arranged according to a pattern
