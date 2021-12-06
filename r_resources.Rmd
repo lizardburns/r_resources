@@ -27,6 +27,9 @@ output:
 - [visualising machine learning data](https://shirinsplayground.netlify.app/2021/04/goodbadugly_ml/)
 - [mixed effect models with lmer](https://github.com/RoseannaGG/LinearMixedEffectsModels/blob/main/Linear%20Mixed%20Effects%20Models%20-%20R%20Gamlen-Greene.pdf)
 
+# Files/File system
+- [rprojroot](https://cran.r-project.org/web/packages/rprojroot/vignettes/rprojroot.html)
+
 # Packages
 - [creating data packages](https://grasshoppermouse.github.io/posts/2017-10-18-put-your-data-in-an-r-package/)
 - [package documentation](https://thisisnic.github.io/2021/05/18/r-package-documentation-what-makes-a-good-example/)
@@ -119,3 +122,9 @@ output:
 - [politicaldata: a package for acquiring and analyzing political data](https://github.com/elliottmorris/politicaldata)
 - [rayvista](https://github.com/h-a-graham/rayvista) -  plugin for the fabulous {rayshader} package. It provides a single main function plot_3d_vista which allows the user to create a 3D visualisation of any location on earth.
 - [climateR](https://github.com/mikejohnson51/climateR)
+
+# Supporting software
+- [SourceTree Git GUI](https://www.sourcetreeapp.com/)
+
+# Working on Code-based projects
+- [ONS Duck book](https://best-practice-and-impact.github.io/qa-of-code-guidance/configuration.html?highlight=secret)
